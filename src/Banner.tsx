@@ -1,0 +1,3 @@
+/* 
+    Create the top banner of the app
+*/

@@ -1,0 +1,3 @@
+/* 
+    Create the bottom navigation panel
+*/
