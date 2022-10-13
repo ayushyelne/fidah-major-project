@@ -28,6 +28,8 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 import Banner from './Banner';
 import BottomNav from './BottomNav';
+import Listings from './Listing';
+import Search from './Search';
 
 const Section: React.FC<
   PropsWithChildren<{
@@ -63,6 +65,8 @@ const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
+    flex: 1,
+	justifyContent:"space-between",
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
@@ -73,6 +77,8 @@ const App = () => {
         backgroundColor={backgroundStyle.backgroundColor}
       />
       <Banner/>
+	  <Search/>
+	  <Listings/>
       <BottomNav/>
     </SafeAreaView>
   );
