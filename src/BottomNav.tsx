@@ -1,5 +1,9 @@
 import React from 'react';
 import { Pressable, View, StyleSheet, Text } from 'react-native';
+import {Light, Dark} from '../../assets/theme';
+import { createBotttomNavigator } from '@react-navigation/botttom-tabs';
+
+const Tab = createBotttomNavigator();
 
 const bnav = StyleSheet.create({
 	bnav: {
@@ -9,7 +13,7 @@ const bnav = StyleSheet.create({
 		justifyContent: "space-evenly",
 		alignContent: "center",
 		borderRadius: 40,
-		backgroundColor: "#ff3c38",
+		backgroundColor: Dark.accent,
 		color: "black",
 	},
 	button: {
@@ -22,14 +26,20 @@ const bnav = StyleSheet.create({
 	}
 });
 
-const Bottombnav = () => {
+// const BottomNav = () => {
+// 	return (
+// 		<View style={bnav.bnav}>
+// 			<Navbutton name="Home"/>
+// 			<Navbutton name="Nutrition"/>
+// 			<Navbutton name="Cart"/>
+// 			<Navbutton name="Account"/>
+// 		</View>
+// 	);
+// }
+
+
+const BottomNav = () => {
 	return (
-		<View style={bnav.bnav}>
-			<Navbutton name="Home"/>
-			<Navbutton name="Nutrition"/>
-			<Navbutton name="Cart"/>
-			<Navbutton name="Account"/>
-		</View>
 	);
 }
 
@@ -41,4 +51,4 @@ const Navbutton = ({name}: { name: string }) => {
 	);
 }
 
-export default Bottombnav;
+export default BottomNav;

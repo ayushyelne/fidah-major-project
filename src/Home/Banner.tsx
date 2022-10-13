@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, Button, TextInput, StyleSheet, FlatList } from 'react-native';
-import { Light, Dark } from '../assets/theme';
+import { Light, Dark } from '../../assets/theme';
 
 const bannerStyle = StyleSheet.create({
     container: {
@@ -18,7 +18,6 @@ const bannerStyle = StyleSheet.create({
 })
 
 const Banner = () => {
-
     return (
         <>
             <View 

@@ -26,10 +26,12 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import Banner from './Banner';
-import BottomNav from './BottomNav';
-import Listings from './Listing';
-import Search from './Search';
+
+import Home from './Home/Home';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { NavigationContainer } from '@react-navigation/native';
+
+const Tab = createBottomTabNavigator();
 
 const Section: React.FC<
   PropsWithChildren<{
@@ -76,10 +78,16 @@ const App = () => {
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <Banner/>
-	  <Search/>
-	  <Listings/>
-      <BottomNav/>
+	  <NavigationContainer>
+		<Tab.Navigator>
+			<Tab.Screen name="Home" component={Home}/>
+			{/*
+			<Tab.Screen name="Nutrition" component={}/>
+			<Tab.Screen name="Cart" component={}/>
+			<Tab.Screen name="Account" component={}/>
+			*/}
+		</Tab.Navigator>
+	 </NavigationContainer>
     </SafeAreaView>
   );
 };

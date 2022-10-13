@@ -1,6 +1,6 @@
 import React from 'react';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
-import {Light, Dark} from '../assets/theme.tsx'
+import {Light, Dark} from '../../assets/theme'
 
 
 const list = StyleSheet.create({
