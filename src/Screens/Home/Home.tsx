@@ -6,7 +6,6 @@ import Search from './Search';
 const Home = () => {
 	return(
 	  <>
-		  <Banner/>
 		  <Search/>
 		  <Listings/>
 	  </>
