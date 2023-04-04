@@ -1,6 +1,6 @@
 import React from 'react';
 import { Pressable, View, StyleSheet, Text } from 'react-native';
-import {Light, Dark} from '../../assets/theme';
+import {Light, Dark} from 'theme';
 import { createBotttomNavigator } from '@react-navigation/botttom-tabs';
 
 const Tab = createBotttomNavigator();

@@ -6,19 +6,33 @@
    ██║   ██║  ██║███████╗██║ ╚═╝ ██║███████╗
    ╚═╝   ╚═╝  ╚═╝╚══════╝╚═╝     ╚═╝╚══════╝ */
 
+import { Colors } from 'react-native/Libraries/NewAppScreen';
+
+// Core type for all colorschemes
+interface Colorscheme {
+		base: string;
+		accent: string;
+		text: string;
+		alt_text: string;
+}
+
 const ACCENT: string = "#27ae60";
-const Light = {
-	base : "white",
+
+const Light: Colorscheme = {
+	base : Colors.lighter,
 	// accent : "#ff3c38",
 	accent : ACCENT,
 	text : "black",
-	text_alt : "white",
+	alt_text: "white",
 }
-const Dark = {
-	base : "black",
+const Dark: Colorscheme = {
+	base : Colors.darker,
 	accent : ACCENT,
 	text : "white",
-	text_alt : "white",
+	alt_text: "silver",
 }
 
-export { Light, Dark };
+const THEME: Colorscheme = Dark;
+
+// export { Light, Dark };
+export default THEME;

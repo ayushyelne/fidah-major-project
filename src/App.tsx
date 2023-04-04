@@ -24,6 +24,17 @@ import Nutrition from './Screens/Nutrition/Nutrition';
 import Cart from './Screens/Cart/Cart';
 
 const Tab = createBottomTabNavigator();
+const tabScreenOptions = {
+	headerShown: false,
+	tabBarActiveTintColor: 'orange',
+	tabBarInActiveTintColor: 'white',
+	tabBarLabelStyle: { fontWeight: "bold" } ,
+	tabBarStyle: { 
+		backgroundColor: Colors.darker,
+		borderTopWidth: 0,
+		position: 'absolute',
+	},
+}
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -41,7 +52,9 @@ const App = () => {
         backgroundColor={backgroundStyle.backgroundColor}
       />
       <NavigationContainer>
-        <Tab.Navigator>
+        <Tab.Navigator 
+			sceneContainerStyle={{ backgroundColor: backgroundStyle.backgroundColor } } 
+			screenOptions={({ route }) => tabScreenOptions}>
           <Tab.Screen name="Home" component={Home}/>
           <Tab.Screen name="Nutrition" component={Nutrition}/>
           <Tab.Screen name="Cart" component={Cart}/>

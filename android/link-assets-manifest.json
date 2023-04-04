@@ -1,0 +1,13 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/fonts/Ballet Harmony.ttf",
+      "sha1": "d04760b4f6895e2c5e46368d1fe4b33fc9584940"
+    },
+    {
+      "path": "assets/theme.tsx",
+      "sha1": "2aca9b76d3975a9040f0e2c07f414ad31b4cd4c9"
+    }
+  ]
+}
