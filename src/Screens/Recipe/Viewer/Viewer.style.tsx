@@ -1,5 +1,6 @@
 import THEME from "assets/theme";
-import { StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
+import { scrollTo } from "react-native-reanimated";
 import { randomColor } from "../../../assets/theme";
 
 
@@ -12,6 +13,8 @@ const viewer = StyleSheet.create({
         alignContent: "center",
         paddingVertical: 30,
         paddingHorizontal: 10,
+        maxWidth: Dimensions.get('window').width,
+        overflow: "scroll",
 		
 		// Debug
 		// borderWidth: 1,
@@ -44,13 +47,9 @@ const viewer = StyleSheet.create({
     time: {
         color: "gray"
     },
-    section: {
-        flex: 5,
-        flexDirection: "column",
-        flexWrap:"nowrap",
-        justifyContent: "flex-start",
-        alignContent: "center",
-        alignItems: "baseline",
+    section_header_container: {
+        // flex: 1,
+        // alignSelf: "center",
 
         //dbg
         borderWidth: 1,
@@ -62,21 +61,22 @@ const viewer = StyleSheet.create({
         fontSize: 28,
         fontWeight: "bold",
 
-        //dbg
-        borderWidth: 1,
-        borderColor: randomColor(),
+        // //dbg
+        // borderWidth: 1,
+        // borderColor: randomColor(),
     },
     stp_container: { 
-        borderWidth: 1,
-        borderColor: randomColor(),
+        // borderWidth: 1,
+        // borderColor: randomColor(),
+        overflow: "scroll",
     },
     steps: {
         color: "gray",
         // flex: 1,
         // padding: 10,
-        //dbg
-        borderWidth: 2,
-        borderColor: randomColor(),
+        // //dbg
+        // borderWidth: 2,
+        // borderColor: randomColor(),
     },
     idx: {fontWeight: "bold"},
 	// ...

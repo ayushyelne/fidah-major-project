@@ -14,7 +14,7 @@ const Viewer = (
 	_: { recipe: Recipe, }) => {
 		const [open, setOpen] = useState(false);
 		const onPress = () => {
-			console.log("pressed");
+			// console.log("pressed");
 			LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
 			setOpen(!open);
 		};
@@ -27,22 +27,23 @@ const Viewer = (
                 <Text style={viewer.time}>{_.recipe.prep_time.toString()}</Text>
             </View>
 			<Text>{(open) ? "True" : "False"}</Text>
-			<Pressable style={viewer.section} onPress={onPress}>
+			<Pressable style={viewer.section_header_container} onPress={onPress}>
 				<Text style={viewer.section_header}>How its made..</Text>
-				<View style={[viewer.stp_container,{
-					display: (open) ? 'flex' : 'flex',
-				}]}>
-					{
-						_.recipe.steps.map((stp,idx) => {
-							return (
-								<View key={idx}>
-									<Text key={idx} style={viewer.steps}><Text style={viewer.idx}>{idx+1}</Text>{stp}~{"\n"}</Text>
-								</View>
-							)
-						})
-					}
-				</View>
 			</Pressable>
+			<View style={[viewer.stp_container,
+			(open) 
+				? { display: 'flex', flex: 4, }
+				: { display: 'none' }
+			]}>
+				{
+					_.recipe.steps.map((stp,idx) => {
+						return <Text key={idx} style={viewer.steps}>
+							<Text style={viewer.idx}>{idx+1}. </Text>
+							{stp}
+							</Text>
+					})
+				}
+			</View>
 		</View>
 	);
 }

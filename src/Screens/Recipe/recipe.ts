@@ -76,7 +76,7 @@ class Recipe {
 				"Cabbage",
 				"Beetroot"
 			]) ,
-			steps: new Array([
+			steps: new Array(
 				"Make Tahini sauce",
 				"Make the pickled cabbage",
 				"Prepare the flatbed",
@@ -86,7 +86,7 @@ class Recipe {
 				"Place the spiced chicken onto the foil",
 				"Remove the chicken from the grill and place it on a serving platter",
 				"Wrap your chicken in the flatbread with the other ingredients"
-			]),
+			),
 			n_values: new Nutrition({
 				protein: [78, "g"],
 				fats: [24, "g"],
