@@ -1,9 +1,20 @@
 import {StyleSheet} from 'react-native';
 import THEME from 'assets/theme';
 
+const homeStackOpts = {
+	headerShown: false,
+}
+
+const homepage = StyleSheet.create({
+	body: {
+		flex: 10,
+		backgroundColor: THEME.base,
+	},
+});
+
 const listing = StyleSheet.create({
 	container: {
-		flex: .3,
+		flex: 1,
 		borderWidth: 1,
 		borderColor: "magenta",
 		backgroundColor: THEME.base,
@@ -16,7 +27,7 @@ const listing = StyleSheet.create({
 
 const search = StyleSheet.create({
 	box: {
-		flex: .1,
+		flex: 5,
 		width: "50%",
 		paddingLeft: 30,
 		paddingRight: 30,
@@ -26,4 +37,4 @@ const search = StyleSheet.create({
 	}
 });
 
-export { listing, search }
+export { listing, search, homeStackOpts, homepage };

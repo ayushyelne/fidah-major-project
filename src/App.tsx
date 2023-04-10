@@ -18,10 +18,13 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 import Home from './Screens/Home/Home';
+import Editor from './Screens/Recipe/Editor/Editor';
+import Viewer from './Screens/Recipe/Viewer/Viewer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import Nutrition from './Screens/Nutrition/Nutrition';
 import Cart from './Screens/Cart/Cart';
+import Recipe from './Screens/Recipe/recipe';
 
 const Tab = createBottomTabNavigator();
 const tabScreenOptions = {
@@ -55,7 +58,9 @@ const App = () => {
         <Tab.Navigator 
 			sceneContainerStyle={{ backgroundColor: backgroundStyle.backgroundColor } } 
 			screenOptions={({ route }) => tabScreenOptions}>
-          <Tab.Screen name="Home" component={Home}/>
+          {/* <Tab.Screen name="Home" component={Home}/> */}
+          {/* <Tab.Screen name="Home" children={()=><Editor recipe={Recipe.mock()} />}/> */}
+          <Tab.Screen name="Home" children={()=><Viewer recipe={Recipe.mock()} />}/>
           <Tab.Screen name="Nutrition" component={Nutrition}/>
           <Tab.Screen name="Cart" component={Cart}/>
           { /*<Tab.Screen name="Account" component={}/> */}

@@ -18,6 +18,22 @@ interface Colorscheme {
 
 const ACCENT: string = "#27ae60";
 
+export function randomColor(): string {
+	const COLORS: [number,Array<string>] = 
+		[ 6, 
+		 [
+			"red", 
+			"cyan",
+			"magenta",
+			"lime",
+			"orangered",
+			"teal"
+		 ]
+		]
+
+	return COLORS[1][Math.floor(Math.random()*COLORS[0] )]
+}
+
 const Light: Colorscheme = {
 	base : Colors.lighter,
 	// accent : "#ff3c38",
