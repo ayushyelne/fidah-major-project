@@ -1,5 +1,6 @@
 import React, {type PropsWithChildren} from 'react';
 import {
+  Dimensions,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -25,6 +26,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import Nutrition from './Screens/Nutrition/Nutrition';
 import Cart from './Screens/Cart/Cart';
 import Recipe from './Screens/Recipe/recipe';
+import FontAwesome from 'react-native-vector-icons/FontAwesome5';
 
 const Tab = createBottomTabNavigator();
 const tabScreenOptions = {
@@ -44,6 +46,8 @@ const App = () => {
 
   const backgroundStyle = {
     flex: 1,
+    width: Dimensions.get('window').width,
+    maxWidth: Dimensions.get('window').width,
 	  justifyContent: "space-between",
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
@@ -58,11 +62,37 @@ const App = () => {
         <Tab.Navigator 
 			sceneContainerStyle={{ backgroundColor: backgroundStyle.backgroundColor } } 
 			screenOptions={({ route }) => tabScreenOptions}>
-          {/* <Tab.Screen name="Home" component={Home}/> */}
-          {/* <Tab.Screen name="Home" children={()=><Editor recipe={Recipe.mock()} />}/> */}
-          <Tab.Screen name="Home" children={()=><Viewer recipe={Recipe.mock()} />}/>
-          <Tab.Screen name="Nutrition" component={Nutrition}/>
-          <Tab.Screen name="Cart" component={Cart}/>
+          <Tab.Screen 
+            name="Home" 
+            // children={()=><Viewer recipe={Recipe.mock()} />}
+            component={Home}
+            options={{
+              tabBarLabel: "Home",
+              tabBarIcon: ({color, size}) => (
+                <FontAwesome name="home" color={color} size={size} />
+              ),
+            }}
+          />
+          <Tab.Screen 
+            name="Nutrition" 
+            component={Nutrition}
+            options={{
+              tabBarLabel: "Nutrition",
+              tabBarIcon: ({color, size}) => (
+                <FontAwesome name="chart-pie" color={color} size={size} />
+              ),
+            }}
+          />
+          <Tab.Screen 
+            name="Cart" 
+            component={Cart}
+            options={{
+              tabBarLabel: "Cart",
+              tabBarIcon: ({color, size}) => (
+                <FontAwesome name="shopping-cart" color={color} size={size} />
+              ),
+            }}
+          />
           { /*<Tab.Screen name="Account" component={}/> */}
         </Tab.Navigator>
       </NavigationContainer>

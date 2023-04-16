@@ -1,4 +1,4 @@
-import Nutrition from "./nutrition";
+import Nutrition, { Quantity } from "./nutrition";
 
 class Time {
 	hours: number;
@@ -69,13 +69,13 @@ class Recipe {
 			author: "Ottoman",
 			img: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.cdnparenting.com%2Farticles%2F2018%2F11%2F23151909%2FChicken-Shawarma.jpg&f=1&nofb=1&ipt=90c4e7c65dc51f69faa97a2203fc255baa6ed77825a96579079085fe6c076def&ipo=images",
 			prep_time: new Time({h: 0, m: 4, s: 10}),
-			ingredients: new Array([
+			ingredients: new Array(
 				"Flatbread",
 				"Chicken Slices",
 				"Tahini Sauce",
 				"Cabbage",
 				"Beetroot"
-			]) ,
+			),
 			steps: new Array(
 				"Make Tahini sauce",
 				"Make the pickled cabbage",
@@ -88,14 +88,28 @@ class Recipe {
 				"Wrap your chicken in the flatbread with the other ingredients"
 			),
 			n_values: new Nutrition({
-				protein: [78, "g"],
-				fats: [24, "g"],
-				carbs: [58,"g"],
-				fiber: [2.8, "g"],
-				calories: [773, "kcal"]
+				protein: new Quantity(78, "g"),
+				fats: new Quantity(24, "g"),
+				carbs: new Quantity(58,"g"),
+				fiber: new Quantity(2.8, "g"),
+				calories: new Quantity(773, "kcal"),
+				portion: new Quantity(390,"g"),
+				micro: new Array(
+					["Iron", new Quantity(2,"g")],
+					["Potassium", new Quantity(0.4,"g")],
+					["Zinc", new Quantity(0.2,"g")],
+				)
 			}),
 		})
 	}
+}
+
+export interface RecipeCard {
+	id: string,
+	name: string,
+	img: string,
+	price: string,
+	etc: string | undefined,
 }
 
 export default Recipe;

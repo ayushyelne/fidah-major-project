@@ -1,23 +1,24 @@
 import { StyleSheet } from "react-native";
 import THEME from "assets/theme";
+import { dbgBorders, randomColor } from "../assets/theme";
+
+const notDBG: boolean = true;
 
 const card = StyleSheet.create({
 	frame: {
-		// flex: 19,
-		width:"50%",
-		height: "40%",
+		marginHorizontal: "2%",
+		flex: 1,
 		padding: 10,
 		justifyContent: "flex-start",
 		alignContent: "space-between",
 		alignItems: "flex-start",
-		rowGap: 50,
-		backgroundColor: THEME.base,
-		borderWidth: 1,
-		borderColor: "silver",
-		borderRadius: 28,
+		backgroundColor: THEME.alt_base,
+		borderRadius: 19,
+
+		...dbgBorders(notDBG)
 	},
 	image: {
-		flex: 6,
+		flex: 0,
 		resizeMode: 'cover',
 		objectFit: 'contain',
 		width: "98%",
@@ -25,48 +26,41 @@ const card = StyleSheet.create({
 		alignSelf: "center",
 		borderRadius: 19,
 
-		// borderWidth: 2,
-		// borderColor: "lightgreen",
+		...dbgBorders(notDBG)
 	},
 	info: {
-		flex: 1.3,
+		flex: 0,
 		fontSize: 10,
 		textTransform: 'lowercase',
 		letterSpacing: 1,
-		fontStyle: "monospace",
 		backgroundColor: THEME.text,
-		color: THEME.base,
-		borderRadius: 10,
-		paddingVertical: 5,
-		paddingHorizontal: 10,
+		color: THEME.alt_base,
+		borderRadius: 5,
+		paddingVertical: "3%",
+		paddingHorizontal: "6%",
 		textAlignVertical: "center",
 
-
-		// borderWidth: 2,
-		// borderColor: "cyan",
+		...dbgBorders(notDBG)
 	},
 	desc: {
-		flex: 6,
-		flexDirection: "row",
-		justifyContent: "center",
-		alignItems: "center",
-		alignContent: "center",
+		flex: 1,
+		flexDirection: "column",
+		justifyContent: "space-evenly",
+		alignContent: "stretch",
+		alignItems: "stretch",
 
-		// borderWidth: 2,
-		// borderColor: "red",
+		...dbgBorders(notDBG)
 	},
 	name: {
-		flex: 4,
+		flex: 0,
 		color: "white",
 		// fontSize: 19,
-		alignSelf: "center",
+		// alignSelf: "center",
 	},
 	price: {
-		flex: 2,
-		textAlign: "right",
+		flex: 0,
 		fontWeight: "bold",
-		// fontSize: 19,
-		alignSelf: "center",
+		fontSize: 19,
 	},
 });
 

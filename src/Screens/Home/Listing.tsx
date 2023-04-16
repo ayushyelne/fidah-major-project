@@ -2,19 +2,27 @@ import React from 'react';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 import {listing} from './Home.style';
 import { RecipeCard, Card } from "../../Components/Card";
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 
-const Listings = () => {
+const Listings = ({navigation}: {navigation: NativeStackNavigationProp<any>}) => {
 	return(
-		// <FlatList style={listing.container}>
-		<View style={listing.container}>
-			<Card recipe={r1}></Card>
-			<Card recipe={r2}></Card>
-		</View>
-		// </FlatList>
+		<FlatList 
+			data={[r1,r2]}
+			numColumns={2}
+			contentContainerStyle={listing.container}
+			keyExtractor={i => i.id}
+			renderItem={({item}) => (
+				<Card nvg={navigation} recipe={item}/>
+			)}
+		/>
 	);
 }
 
+		// <View style={listing.container}>
+		// 	<Card recipe={r1}></Card>
+		// 	<Card recipe={r2}></Card>
+		// </View>
 
 const r1: RecipeCard = {
 		id: "#paneer_jalfrezi",

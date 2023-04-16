@@ -1,7 +1,19 @@
 /** ## Quantity 
  * Is simply a tuple of `( number, unit )`    
  * e.g. 34kcal is represented as `( 34, "kcal")` */
-type Quantity = [number, string];
+export class Quantity {
+    value: number;
+    unit: string;
+
+    constructor(v: number, u: string) {
+        this.value = v;
+        this.unit = u;
+    }
+
+    toString(): string {
+        return this.value + this.unit;
+    }
+}
 /*
     Vitamins: A, B1, B2, B3, B6, B12, C, D, E, K
     Minerals: Calcium, Chromium, Folic Acid, Iodine, 
@@ -20,15 +32,17 @@ type Quantity = [number, string];
  * @property {Array<[string, Quantity]>} vitamins   Vitamins count
  * @property {Array<[string, Quantity]>} micro      Micronutrients count
  * @property {Quantity} calories                    Calories
+ * @property {Quantity} portion                     Serving size
  */
 class Nutrition {
     protein: Quantity;
     carbs: Quantity;
     fats: Quantity;
     fiber: Quantity;
-    vitamins?: Array<[string, Quantity]>;
-    micro?: Array<[string, Quantity]>;
+    vitamins: Array<[string, Quantity]>;
+    micro: Array<[string, Quantity]>;
     calories: Quantity;
+    portion: Quantity;
 
     constructor(obj: any) {
         this.protein = obj.protein;
@@ -38,6 +52,7 @@ class Nutrition {
         this.vitamins = obj.vitamins;
         this.micro = obj.micro;
         this.calories = obj.calories;
+        this.portion = obj.portion;
     }
 }
 
