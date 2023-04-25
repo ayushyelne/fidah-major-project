@@ -39,6 +39,7 @@ const card = StyleSheet.create({
 		paddingVertical: "3%",
 		paddingHorizontal: "6%",
 		textAlignVertical: "center",
+		marginVertical: "4%",
 
 		...dbgBorders(notDBG)
 	},
@@ -56,6 +57,9 @@ const card = StyleSheet.create({
 		color: "white",
 		// fontSize: 19,
 		// alignSelf: "center",
+	},
+	rating: {
+		color: "gold",
 	},
 	price: {
 		flex: 0,

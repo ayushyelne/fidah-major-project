@@ -1,6 +1,7 @@
 import Nutrition, { Quantity } from "./nutrition";
+import { shawarma } from "./recipe.mock";
 
-class Time {
+export class Time {
 	hours: number;
 	minutes: number;
 	seconds: number;
@@ -37,13 +38,15 @@ class Time {
 * @property {Array<string>} steps	- Steps to cook the recipe
 */
 class Recipe {
+	readonly id: string;
 	readonly name: string;
 	readonly author: string;
 	readonly img: string;
 	readonly prep_time: Time;
 	readonly ingredients: Array<string>;
 	readonly steps: Array<string>;
-	readonly n_values: Nutrition
+	readonly n_values: Nutrition;
+	readonly rating: number;
 
 	/** # Recipe
 	* Recipe Format:
@@ -54,6 +57,7 @@ class Recipe {
 	* ```
 	*/
 	constructor(obj: any) {
+		this.id = obj.id;
 		this.name = obj.name;
 		this.author = obj.author;
 		this.img = obj.img;
@@ -61,46 +65,14 @@ class Recipe {
 		this.ingredients = obj.ingredients;
 		this.steps = obj.steps;
 		this.n_values = obj.n_values;
+		this.rating = obj.rating;
 	}
 
 	static mock(): Recipe {
-		return new Recipe({
-			name: "Shawarma",
-			author: "Ottoman",
-			img: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.cdnparenting.com%2Farticles%2F2018%2F11%2F23151909%2FChicken-Shawarma.jpg&f=1&nofb=1&ipt=90c4e7c65dc51f69faa97a2203fc255baa6ed77825a96579079085fe6c076def&ipo=images",
-			prep_time: new Time({h: 0, m: 4, s: 10}),
-			ingredients: new Array(
-				"Flatbread",
-				"Chicken Slices",
-				"Tahini Sauce",
-				"Cabbage",
-				"Beetroot"
-			),
-			steps: new Array(
-				"Make Tahini sauce",
-				"Make the pickled cabbage",
-				"Prepare the flatbed",
-				"Mix the spices together in a bowl",
-				"Add the chicken strips to the mixture and toss them before drizzling them with olive oil",
-				"Prepare your grill",
-				"Place the spiced chicken onto the foil",
-				"Remove the chicken from the grill and place it on a serving platter",
-				"Wrap your chicken in the flatbread with the other ingredients"
-			),
-			n_values: new Nutrition({
-				protein: new Quantity(78, "g"),
-				fats: new Quantity(24, "g"),
-				carbs: new Quantity(58,"g"),
-				fiber: new Quantity(2.8, "g"),
-				calories: new Quantity(773, "kcal"),
-				portion: new Quantity(390,"g"),
-				micro: new Array(
-					["Iron", new Quantity(2,"g")],
-					["Potassium", new Quantity(0.4,"g")],
-					["Zinc", new Quantity(0.2,"g")],
-				)
-			}),
-		})
+		return shawarma
+	}
+
+	summarize() {
 	}
 }
 
@@ -110,6 +82,7 @@ export interface RecipeCard {
 	img: string,
 	price: string,
 	etc: string | undefined,
+	rating: number,
 }
 
 export default Recipe;

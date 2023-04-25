@@ -41,6 +41,9 @@ const tabScreenOptions = {
 	},
 }
 
+// Cart
+export const CheckoutList = React.createContext<Recipe[]>([]);
+
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
@@ -61,7 +64,7 @@ const App = () => {
       <NavigationContainer>
         <Tab.Navigator 
 			sceneContainerStyle={{ backgroundColor: backgroundStyle.backgroundColor } } 
-			screenOptions={({ route }) => tabScreenOptions}>
+			screenOptions={tabScreenOptions}>
           <Tab.Screen 
             name="Home" 
             // children={()=><Viewer recipe={Recipe.mock()} />}

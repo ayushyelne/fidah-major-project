@@ -14,6 +14,7 @@ const viewer = StyleSheet.create({
         paddingVertical: 30,
         paddingHorizontal: 10,
         overflow: "scroll",
+        backgroundColor: THEME.base
 		
 		// Debug
 		// borderWidth: 1,

@@ -1,84 +1,104 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import {Image, ImageBackground, Pressable, StyleSheet, Text, View} from 'react-native';
 import { FlatList, ScrollView, TextInput } from 'react-native-gesture-handler';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import MaterialIcons  from 'react-native-vector-icons/MaterialIcons';
+import THEME from '../../assets/theme';
+import nutrition from './Nutrition.style';
 
 interface Nutrient {
     name: string,
-    image: string
+    icon: JSX.Element,
 }
 
-const nutrients: Array<Nutrient> = [
+const macroNutrients: Array<Nutrient> = [
     { 
         name: 'Protein',
-        image: 'https://media.thatsweetgift.com/wp-content/uploads/2019/05/best-protein-meals.jpg'
+        // image: 'https://media.thatsweetgift.com/wp-content/uploads/2019/05/best-protein-meals.jpg',
+        icon: 
+            <FontAwesome5 
+                name="dna" 
+                size={nutrition.icon.fontSize} 
+                color={nutrition.text.color} 
+                style={nutrition.icon}
+            />
     },
     {
         name: 'Carbs',
-        image: ''
+        icon: 
+            <FontAwesome5 
+                name="cubes" 
+                size={nutrition.icon.fontSize} 
+                color={nutrition.text.color} 
+                style={nutrition.icon}
+            />
     },
     {
         name: 'Fats',
-        image: ''
+        icon: 
+            <FontAwesome5 
+                name="burn" 
+                size={nutrition.icon.fontSize} 
+                color={nutrition.text.color} 
+                style={nutrition.icon}
+            />
     },
     {
         name: 'Minerals',
-        image: ''
+        icon: 
+            <FontAwesome5 
+                name="bone" 
+                size={nutrition.icon.fontSize} 
+                color={nutrition.text.color} 
+                style={nutrition.icon}
+            />
     },
     {
         name: 'Vitamins',
-        image: ''
+        icon: 
+            <FontAwesome5 
+                name="capsules" 
+                size={nutrition.icon.fontSize} 
+                color={nutrition.text.color} 
+            />
     },
     {
         name: 'Fibre',
-        image: ''
+        icon: 
+            <FontAwesome5 
+                name="carrot" 
+                size={nutrition.icon.fontSize} 
+                color={nutrition.text.color} 
+            />
     },
 ];
 
 
-const NutrientCard = ({name, image}: Nutrient ) => {
+const NutrientCard = ({n}: {n: Nutrient} ) => {
     return(
-        <Pressable>
-            <ImageBackground imageStyle={nutri.cardImage} style={nutri.card} resizeMode='cover' source={{ uri: image }}>
-                <Text style={nutri.text}>{name}</Text>
-            </ImageBackground>
+        <Pressable style={nutrition.card}>
+            {n.icon}
+            <Text style={nutrition.text}>{n.name}</Text>
         </Pressable>
     );
 }
 
-const nutri = StyleSheet.create({
-    search: {
-        padding: 20,
-        backgroundColor: "lightgray",
-        color: "black"
-    },
-    cardImage: {
-        borderRadius: 15
-    },
-    card: {
-        width: 150,
-        height: 150,
-        padding: 25,
-        paddingTop: 73,
-    },
-    text: {
-        fontSize: 19,
-        fontWeight: "bold",
-        color: "black",
-    }
-});
 
 const Nutrition = () => {
     return (
-        <>
-            <TextInput style={nutri.search} placeholderTextColor="darkgray" placeholder='Naughty Samosa...'/>
-            <ScrollView>
-                {
-                    nutrients.map( (n) => {
-                        return <NutrientCard name={n.name} image={n.image}/>
-                    })
-                }
-            </ScrollView>
-        </>
+        <View style={nutrition.body}>
+            <TextInput 
+                style={nutrition.search} 
+                placeholderTextColor={THEME.alt_text} 
+                placeholder='Naughty Samosa...'
+            />
+            <FlatList 
+                data={macroNutrients}
+                numColumns={2}
+                keyExtractor={x => x.name}
+                renderItem={({item})=> (<NutrientCard n={item}/>)}
+            />
+        </View>
     );
 }
 

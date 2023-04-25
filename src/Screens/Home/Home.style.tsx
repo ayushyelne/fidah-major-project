@@ -2,7 +2,7 @@ import {StyleSheet} from 'react-native';
 import THEME from 'assets/theme';
 import { dbgBorders } from '../../assets/theme';
 
-const notDBG: boolean = false;
+const notDBG: boolean = true;
 
 const homeStackOpts = {
 	headerShown: false,
@@ -13,6 +13,20 @@ const homepage = StyleSheet.create({
 		flex: 10,
 		backgroundColor: THEME.base,
 	},
+	fab: {
+		justifyContent: "center",
+		alignItems: "center",
+		position: 'absolute',
+		alignSelf: 'flex-end',
+		bottom: "8%",
+		right: "5%",
+		padding: "5%",
+		borderRadius: 100,
+		backgroundColor: THEME.alt_base,
+	},
+	fab_icon: {
+		fontSize: 28,
+	}
 });
 
 const listing = StyleSheet.create({
