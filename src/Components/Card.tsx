@@ -7,6 +7,8 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { SetActiveRecipe } from '../Screens/Home/Home';
 import  FontAwesome from 'react-native-vector-icons/FontAwesome';
 import  FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import  FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import  Feather from 'react-native-vector-icons/Feather';
 
 function rate(n: number): JSX.Element {
 	const hollow = <FontAwesome5 name="star"/>
@@ -46,6 +48,9 @@ const Card = ({nvg, recipe}: {nvg: NativeStackNavigationProp<any> , recipe: Reci
 				<Text style={card.name}>{recipe.name}</Text>
 				<Text style={card.rating}>{rate(recipe.rating)}</Text>
 				<Text style={card.price}>{recipe.price}</Text>
+				<Pressable>
+					<Feather style={card.cart_icon} name="shopping-cart"/>
+				</Pressable>
 			</View>
 		</Pressable>
 	)

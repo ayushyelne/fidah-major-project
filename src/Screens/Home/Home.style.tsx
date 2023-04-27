@@ -12,13 +12,14 @@ const homepage = StyleSheet.create({
 	body: {
 		flex: 10,
 		backgroundColor: THEME.base,
+		...dbgBorders()
 	},
 	fab: {
 		justifyContent: "center",
 		alignItems: "center",
 		position: 'absolute',
 		alignSelf: 'flex-end',
-		bottom: "8%",
+		bottom: "3%",
 		right: "5%",
 		padding: "5%",
 		borderRadius: 100,

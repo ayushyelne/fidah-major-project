@@ -76,10 +76,12 @@ const viewer = StyleSheet.create({
     },
     stp_container$collapsed: { 
         display: 'none',
+        opacity: 0,
     },
     stp_container$expanded: {
         flex: 1.5,
         alignSelf: "stretch",
+        opacity: 100,
     },
     steps: {
         color: "gray",
@@ -165,7 +167,25 @@ const viewer = StyleSheet.create({
         fontSize: 10,
         fontStyle: "italic",
         
-    }
+    },
+    fab_edit: {
+		justifyContent: "center",
+		alignItems: "center",
+		position: 'absolute',
+		alignSelf: 'flex-end',
+		bottom: "3%",
+		right: "5%",
+		padding: "5%",
+		borderRadius: 100,
+        borderWidth: .5,
+        borderStyle: 'dotted',
+        borderColor: THEME.alt_text,
+		backgroundColor: THEME.accent,
+    },
+    fab_edit_icon: {
+		fontSize: 28,
+        color: THEME.base,
+    },
 });
 
 export default viewer;

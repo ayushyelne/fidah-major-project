@@ -1,4 +1,5 @@
 import React, {type PropsWithChildren} from 'react';
+import { useState, Dispatch, SetStateAction } from 'react';
 import {
   Dimensions,
   SafeAreaView,
@@ -27,25 +28,28 @@ import Nutrition from './Screens/Nutrition/Nutrition';
 import Cart from './Screens/Cart/Cart';
 import Recipe from './Screens/Recipe/recipe';
 import FontAwesome from 'react-native-vector-icons/FontAwesome5';
+import THEME from './assets/theme';
 
 const Tab = createBottomTabNavigator();
 const tabScreenOptions = {
 	headerShown: false,
+  tabBarShowLabel: false,
 	tabBarActiveTintColor: 'orange',
 	tabBarInActiveTintColor: 'white',
 	tabBarLabelStyle: { fontWeight: "bold" } ,
-	tabBarStyle: { 
-		backgroundColor: Colors.darker,
+	tabBarStyle: {
+		backgroundColor: THEME.alt_base,
 		borderTopWidth: 0,
-		position: 'absolute',
+		position: 'relative',
 	},
 }
 
 // Cart
-export const CheckoutList = React.createContext<Recipe[]>([]);
+export const CheckoutList = React.createContext<[Recipe[],Dispatch<SetStateAction<Recipe[]>>]>([]);
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
+  const [cart, setCart] = useState<Recipe[]>([]);
 
   const backgroundStyle = {
     flex: 1,
@@ -61,44 +65,56 @@ const App = () => {
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <NavigationContainer>
-        <Tab.Navigator 
-			sceneContainerStyle={{ backgroundColor: backgroundStyle.backgroundColor } } 
-			screenOptions={tabScreenOptions}>
-          <Tab.Screen 
-            name="Home" 
-            // children={()=><Viewer recipe={Recipe.mock()} />}
-            component={Home}
-            options={{
-              tabBarLabel: "Home",
-              tabBarIcon: ({color, size}) => (
-                <FontAwesome name="home" color={color} size={size} />
-              ),
-            }}
-          />
-          <Tab.Screen 
-            name="Nutrition" 
-            component={Nutrition}
-            options={{
-              tabBarLabel: "Nutrition",
-              tabBarIcon: ({color, size}) => (
-                <FontAwesome name="chart-pie" color={color} size={size} />
-              ),
-            }}
-          />
-          <Tab.Screen 
-            name="Cart" 
-            component={Cart}
-            options={{
-              tabBarLabel: "Cart",
-              tabBarIcon: ({color, size}) => (
-                <FontAwesome name="shopping-cart" color={color} size={size} />
-              ),
-            }}
-          />
-          { /*<Tab.Screen name="Account" component={}/> */}
-        </Tab.Navigator>
-      </NavigationContainer>
+	  <CheckoutList.Provider value={[cart, setCart]}>
+		  <NavigationContainer>
+			<Tab.Navigator 
+				sceneContainerStyle={{ backgroundColor: backgroundStyle.backgroundColor } } 
+				screenOptions={tabScreenOptions}>
+			  <Tab.Screen 
+				name="Home" 
+				// children={()=><Viewer recipe={Recipe.mock()} />}
+				component={Home}
+				options={{
+				  tabBarLabel: "Home",
+				  tabBarIcon: ({color, size}) => (
+					<FontAwesome name="home" color={color} size={size} />
+				  ),
+				}}
+			  />
+			  <Tab.Screen 
+				name="Nutrition" 
+				component={Nutrition}
+				options={{
+				  tabBarLabel: "Nutrition",
+				  tabBarIcon: ({color, size}) => (
+					<FontAwesome name="chart-pie" color={color} size={size} />
+				  ),
+				}}
+			  />
+			  <Tab.Screen 
+				name="Cart" 
+				component={Cart}
+				options={{
+				  tabBarLabel: "Cart",
+				  tabBarIcon: ({color, size}) => (
+					<FontAwesome name="shopping-cart" color={color} size={size} />
+				  ),
+				}}
+			  />
+			  <Tab.Screen 
+				name="Account" 
+				component={Cart}
+				options={{
+				  tabBarLabel: "Account",
+				  tabBarIcon: ({color, size}) => (
+					<FontAwesome name="user-tie" color={color} size={size} />
+				  ),
+				}}
+			  />
+			  { /*<Tab.Screen name="Account" component={}/> */}
+			</Tab.Navigator>
+		  </NavigationContainer>
+	  </CheckoutList.Provider>
     </SafeAreaView>
   );
 };

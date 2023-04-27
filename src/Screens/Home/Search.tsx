@@ -1,24 +1,27 @@
 import React, {useState} from 'react';
 import { StyleSheet, TextInput } from 'react-native';
 import THEME from 'assets/theme';
+import { dbgBorders } from '../../assets/theme';
 
 const search = StyleSheet.create({
 	box: {
-		flex: .1,
-		fontFamily: 'Ballet Harmony',
-		width: "90%",
-		margin: "1%",
-		alignSelf: "center",
-		paddingVertical: -1,
-		fontStyle: 'italic',
+		// flex: .1,
+		flex: 0,
+		flexDirection: 'row',
+		margin: "3%",
+		marginVertical: "5%",
+		alignSelf: "stretch",
 		textAlignVertical: 'center',
-		paddingLeft: 30,
-		paddingRight: 30,
-		borderRadius: 30,
-		borderWidth: .1,
-		borderColor: 'silver',
-		backgroundColor: 'rgba(40,40,40,0.8)',
+		paddingHorizontal: '5%',
+		paddingVertical: '2%',
+		// borderWidth: 1,
+		// borderColor: 'silver',
+		borderRadius: 10,
+		// backgroundColor: 'rgba(40,40,40,0.8)',
+		backgroundColor: THEME.alt_base,
 		color: THEME.text,
+
+		...dbgBorders(false)
 	}
 });
 

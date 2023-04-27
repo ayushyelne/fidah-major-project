@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { View, Image, Text, Platform, UIManager, LayoutAnimation, TouchableOpacity, Pressable, ScrollView, Modal, Button, TextInputBase } from "react-native";
 import { FlatList, TextInput, TouchableWithoutFeedback } from "react-native-gesture-handler";
 import Icon from "react-native-vector-icons/FontAwesome5";
+import Feather from "react-native-vector-icons/Feather";
 import Recipe from "../recipe";
 
 import viewer from "./Viewer.style";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { SetActiveRecipe } from "../../Home/Home";
 
 (Platform.OS === 'android')
 ? (UIManager.setLayoutAnimationEnabledExperimental) 
@@ -18,8 +21,9 @@ interface NuQuant {
 }
 
 const Viewer = (
-	{ recipe } : {recipe: Recipe, }) => {
-		console.log("Recipe is: ",recipe);
+	{ recipe, nvg } : {recipe: Recipe, nvg: NativeStackNavigationProp<any> }) => {
+		// console.log("Recipe is: ",recipe);
+		const setActiveRecipe = useContext(SetActiveRecipe);
 		const [open$1, setOpen$1] = useState(false);
 		const [open$2, setOpen$2] = useState(false);
 		const onPress$1 = () => {
@@ -110,7 +114,7 @@ const Viewer = (
 					recipe.ingredients.map((stp,idx) => {
 						return <Text key={idx} style={viewer.steps}>
 							<Text style={viewer.idx}>{idx+1}. </Text>
-							{stp}
+							{stp[0]+"("+stp[1]+")"}
 							</Text>
 					})
 				}
@@ -178,6 +182,12 @@ const Viewer = (
 					</View>
 				</Pressable>
 			</Modal>
+			<Pressable onPress={() => {
+				nvg.push('editor');
+				if(setActiveRecipe) setActiveRecipe(recipe.id);
+			}} style={viewer.fab_edit}>
+				<Feather name="edit" style={viewer.fab_edit_icon}/>
+			</Pressable>
 		</View>
 	);
 }

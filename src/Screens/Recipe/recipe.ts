@@ -43,8 +43,8 @@ class Recipe {
 	readonly author: string;
 	readonly img: string;
 	readonly prep_time: Time;
-	readonly ingredients: Array<string>;
-	readonly steps: Array<string>;
+	readonly ingredients: string[][];
+	readonly steps: string[];
 	readonly n_values: Nutrition;
 	readonly rating: number;
 

@@ -28,7 +28,7 @@ const Home = () => {
 				<Stack.Screen 
 					options={homeStackOpts} 
 					name="viewer" 
-					children={() => <Viewer recipe={getRecipe(recipeID)}/>}
+					children={(nvg) => <Viewer nvg={nvg.navigation} recipe={getRecipe(recipeID)}/>}
 				/>
 				<Stack.Screen
 					options={homeStackOpts}

@@ -18,11 +18,11 @@ export const shawarma: Recipe = new Recipe({
 			prep_time: new Time({h: 0, m: 4, s: 10}),
 			rating: 4,
 			ingredients: new Array(
-				"Flatbread",
-				"Chicken Slices",
-				"Tahini Sauce",
-				"Cabbage",
-				"Beetroot"
+				["Flatbread","2pcs"],
+				["Chicken Slices","80g"],
+				["Tahini Sauce","40ml"],
+				["Cabbage","30g"],
+				["Beetroot","25g"]
 			),
 			steps: new Array(
 				"Make Tahini sauce",

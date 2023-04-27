@@ -8,7 +8,7 @@ const card = StyleSheet.create({
 	frame: {
 		marginHorizontal: "2%",
 		flex: 1,
-		padding: 10,
+		padding: "3%",
 		justifyContent: "flex-start",
 		alignContent: "space-between",
 		alignItems: "flex-start",

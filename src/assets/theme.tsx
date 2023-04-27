@@ -17,7 +17,8 @@ interface Colorscheme {
 		alt_text: string;
 }
 
-const ACCENT: string = "#27ae60";
+// const ACCENT: string = "#27ae60";
+const ACCENT: string = "orange";
 
 export function randomColor(): string {
 	const COLORS: [number,Array<string>] = 
