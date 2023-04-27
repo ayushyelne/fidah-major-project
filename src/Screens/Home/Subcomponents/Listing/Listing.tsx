@@ -1,9 +1,9 @@
 import React from 'react';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
-import {listing} from './Home.style';
-import { Card } from "../../Components/Card";
+import {listing} from '../../Home.style';
+import { Card } from "./Subcomponents/Card/Card";
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { r1, r2 } from '../Recipe/recipe.mock';
+import { r1, r2 } from '../../../Recipe/recipe.mock';
 
 
 const Listings = ({navigation}: {navigation: NativeStackNavigationProp<any>}) => {

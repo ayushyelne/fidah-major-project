@@ -1,4 +1,4 @@
-import React, {type PropsWithChildren} from 'react';
+import React, {createContext, useReducer, type PropsWithChildren} from 'react';
 import { useState, Dispatch, SetStateAction } from 'react';
 import {
   Dimensions,
@@ -26,9 +26,12 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import Nutrition from './Screens/Nutrition/Nutrition';
 import Cart from './Screens/Cart/Cart';
-import Recipe from './Screens/Recipe/recipe';
+import Recipe, { RecipeCard } from './Screens/Recipe/recipe';
 import FontAwesome from 'react-native-vector-icons/FontAwesome5';
 import THEME from './assets/theme';
+import { CartActions, cartReducer } from './Screens/Cart/cart';
+import Account from './Screens/Account/Account';
+import User from './cogs/user';
 
 const Tab = createBottomTabNavigator();
 const tabScreenOptions = {
@@ -45,11 +48,14 @@ const tabScreenOptions = {
 }
 
 // Cart
-export const CheckoutList = React.createContext<[Recipe[],Dispatch<SetStateAction<Recipe[]>>]>([]);
+export const CartList = createContext<[RecipeCard,number][]>([]);
+export const Dispatch$CartList = createContext<Dispatch<CartActions>>(() => {});
+export const ActiveUser = createContext<[User, Dispatch<SetStateAction<User>>]>([User.mock(), () => {}]);
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
-  const [cart, setCart] = useState<Recipe[]>([]);
+  const [cart, dispatchCart] = useReducer(cartReducer, []);
+  const [activeUser, setActiveUser] = useState<User>(User.mock());
 
   const backgroundStyle = {
     flex: 1,
@@ -65,7 +71,9 @@ const App = () => {
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-	  <CheckoutList.Provider value={[cart, setCart]}>
+	  <ActiveUser.Provider value={[activeUser,setActiveUser]}>
+	  <CartList.Provider value={cart}>
+	  <Dispatch$CartList.Provider value={dispatchCart}>
 		  <NavigationContainer>
 			<Tab.Navigator 
 				sceneContainerStyle={{ backgroundColor: backgroundStyle.backgroundColor } } 
@@ -102,8 +110,8 @@ const App = () => {
 				}}
 			  />
 			  <Tab.Screen 
-				name="Account" 
-				component={Cart}
+				name="Account"
+				component={Account}
 				options={{
 				  tabBarLabel: "Account",
 				  tabBarIcon: ({color, size}) => (
@@ -114,7 +122,9 @@ const App = () => {
 			  { /*<Tab.Screen name="Account" component={}/> */}
 			</Tab.Navigator>
 		  </NavigationContainer>
-	  </CheckoutList.Provider>
+	  </Dispatch$CartList.Provider>
+	  </CartList.Provider>
+	  </ActiveUser.Provider>
     </SafeAreaView>
   );
 };

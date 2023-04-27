@@ -1,14 +1,14 @@
 import React, { useContext } from 'react';
 import { View, Image, Text, Pressable } from "react-native";
 // import { nativeViewGestureHandler} from 'react-native-gesture-handler/lib/typescript/handlers/NativeViewGestureHandler';
-import Recipe, { RecipeCard } from '../Screens/Recipe/recipe';
+import Recipe, { RecipeCard } from '../../../../../Recipe/recipe';
 import card from './Card.style';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { SetActiveRecipe } from '../Screens/Home/Home';
+import { SetActiveRecipe } from '../../../../Home';
 import  FontAwesome from 'react-native-vector-icons/FontAwesome';
 import  FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import  FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import  Feather from 'react-native-vector-icons/Feather';
+import  Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { Dispatch$CartList } from '../../../../../../App';
 
 function rate(n: number): JSX.Element {
 	const hollow = <FontAwesome5 name="star"/>
@@ -30,6 +30,7 @@ function rate(n: number): JSX.Element {
 
 const Card = ({nvg, recipe}: {nvg: NativeStackNavigationProp<any> , recipe: RecipeCard}) => {
 	const setActiveRecipe = useContext(SetActiveRecipe);
+	const dispatch$cart = useContext(Dispatch$CartList);
 	const onClicked = () => {
 		if (setActiveRecipe) { 
 			setActiveRecipe(recipe.id);
@@ -47,11 +48,12 @@ const Card = ({nvg, recipe}: {nvg: NativeStackNavigationProp<any> , recipe: Reci
 			<View style={card.desc}>
 				<Text style={card.name}>{recipe.name}</Text>
 				<Text style={card.rating}>{rate(recipe.rating)}</Text>
-				<Text style={card.price}>{recipe.price}</Text>
-				<Pressable>
-					<Feather style={card.cart_icon} name="shopping-cart"/>
-				</Pressable>
+					<Text style={card.price}>{recipe.price}</Text>
+				{/* <View style={card.price_cart}> </View> */}
 			</View>
+			<Pressable style={card.cart} onPress={() => {dispatch$cart({do: 'add', payload: recipe })}}>
+				<Icon style={card.cart_icon} name="cart-plus"/>
+			</Pressable>
 		</Pressable>
 	)
 }

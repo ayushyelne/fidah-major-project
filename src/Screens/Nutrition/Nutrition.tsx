@@ -90,7 +90,7 @@ const Nutrition = () => {
             <TextInput 
                 style={nutrition.search} 
                 placeholderTextColor={THEME.alt_text} 
-                placeholder='Naughty Samosa...'
+                placeholder='Samosa...'
             />
             <FlatList 
                 data={macroNutrients}

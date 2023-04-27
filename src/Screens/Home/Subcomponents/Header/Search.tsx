@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { StyleSheet, TextInput } from 'react-native';
 import THEME from 'assets/theme';
-import { dbgBorders } from '../../assets/theme';
+import { dbgBorders } from '../../../../assets/theme';
 
 const search = StyleSheet.create({
 	box: {
@@ -21,7 +21,7 @@ const search = StyleSheet.create({
 		backgroundColor: THEME.alt_base,
 		color: THEME.text,
 
-		...dbgBorders(false)
+		// ...dbgBorders(false)
 	}
 });
 

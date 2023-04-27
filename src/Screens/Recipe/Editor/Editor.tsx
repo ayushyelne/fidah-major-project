@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useReducer, useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useReducer, useState } from "react";
 import { View, Image, Text, Pressable, Platform, UIManager, LayoutAnimation, ImageBackground } from "react-native";
 import { FlatList, ScrollView, TextInput } from "react-native-gesture-handler";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
@@ -19,7 +19,7 @@ let imgPickerOptions: CameraOptions = {
 	mediaType: "photo",
 	quality: 1
 }
-const launchCam = launchCamera(imgPickerOptions, rsp => {
+const launchCam = () => { launchCamera(imgPickerOptions, rsp => {
 	if(rsp.didCancel) {
 		console.log("Cancelled");
 	} else if (rsp.errorCode) {
@@ -27,21 +27,29 @@ const launchCam = launchCamera(imgPickerOptions, rsp => {
 	} else {
 		console.log("Done! :",rsp.assets);
 	}
-} )
-
-const launchImgLib = launchImageLibrary(imgPickerOptions, rsp => {
-	if(rsp.didCancel) {
-		console.log("Cancelled");
-	} else if (rsp.errorCode) {
-		console.error("ERROR:: Image Picker ::" , rsp.errorCode, "::", rsp.errorMessage);
-	} else {
-		console.log("Done! :",rsp.assets);
-	}
-
-	this.setState({
-		resourcePath: rsp
-	});
-} )
+	} )
+}
+async function launchImgLib(current: string): Promise<string> { 
+	let src: string = current;
+	await launchImageLibrary(imgPickerOptions, rsp => {
+		if(rsp.didCancel) {
+			console.log("Cancelled");
+		} else if (rsp.errorCode) {
+			console.error("ERROR:: Image Picker ::" , rsp.errorCode, "::", rsp.errorMessage);
+		} else {
+			console.log("Done! :",rsp.assets);
+			if(rsp.assets) {
+				if(rsp.assets[0].uri) {
+					console.log("URI: ", rsp.assets[0].uri);
+					src = rsp.assets[0].uri 
+					console.log("ImgLib.src", src);
+				}
+			}
+		}
+	})
+	LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+	return src;
+}
 
 
 
@@ -72,23 +80,27 @@ const Editor = (
 				]
 			})
 		}
-		console.log("Image.src: ", imageSource);
+
 		return (
 			<>
+			{/* <View style={editor.body} > */}
 			<ScrollView style={editor.body} >
 				<ImageBackground 
-					style={editor.image_section} 
+					style={[editor.image_section, (imageSource) ? {minHeight: "20%"} : {minHeight: "10%"}]} 
 					source={{ uri: imageSource }}
 					imageStyle={editor.image_section_image}
 				>
 					<View style={editor.image_sub_section}>
 						<Pressable 
 							style={editor.image_add_edit}
-							onPress={() => launchImgLib}
+							onPress={() => launchImgLib(imageSource).then(val => setImageSource(val))}
 						>
 							<Feather style={editor.image_add_edit_icon} name={(imageSource) ? "edit" : "plus-circle"}/>
 						</Pressable>
-						<Pressable style={editor.image_delete} onPress={() => setImageSource("")}>
+						<Pressable style={editor.image_delete} onPress={() => {
+							LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+							setImageSource("")
+						}}>
 							<Feather name="delete" style={editor.image_delete_icon}/>
 						</Pressable>
 					</View>
@@ -108,6 +120,7 @@ const Editor = (
 				</View>
 				<EditableList listControl={[nutriList,dispatch$NutriList]} type='none' options={{multiline: false, scrollable: true, editable: false, add_remove: false}} />
 			</ScrollView>
+			{/* </View> */}
 			<Pressable style={editor.fab_save} onPress={ () => {} }>
 				<Feather style={editor.fab_save_icon} name="save"/>
 			</Pressable>

@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState } from 'react';
-import Banner from './Banner';
-import Listings from './Listing';
-import Search from './Search';
+import Banner from './Subcomponents/Header/Banner';
+import Listings from './Subcomponents/Listing/Listing';
+import Search from './Subcomponents/Header/Search';
 import Editor from '../Recipe/Editor/Editor';
 import Viewer from '../Recipe/Viewer/Viewer';
 import { Pressable, View } from 'react-native';
@@ -14,10 +14,6 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 const Stack = createNativeStackNavigator();
 
 export const SetActiveRecipe = createContext<React.Dispatch<React.SetStateAction<string>>|null>(null);
-function getRecipe(id: string) : Recipe {
-	return Recipe.mock()
-	// TODO: Link with backend
-}
 
 const Home = () => {
 	const [recipeID, setRecipeID] = useState("##");
@@ -28,7 +24,7 @@ const Home = () => {
 				<Stack.Screen 
 					options={homeStackOpts} 
 					name="viewer" 
-					children={(nvg) => <Viewer nvg={nvg.navigation} recipe={getRecipe(recipeID)}/>}
+					children={(nvg) => <Viewer nvg={nvg.navigation} recipe={Recipe.fromID(recipeID)}/>}
 				/>
 				<Stack.Screen
 					options={homeStackOpts}
@@ -38,7 +34,7 @@ const Home = () => {
 				<Stack.Screen
 					options={homeStackOpts}
 					name="editor"
-					children={() => (<Editor recipe={getRecipe(recipeID)}/>)}
+					children={() => (<Editor recipe={Recipe.fromID(recipeID)}/>)}
 				/>
 			</Stack.Navigator>
 		</SetActiveRecipe.Provider>

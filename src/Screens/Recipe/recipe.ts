@@ -72,7 +72,18 @@ class Recipe {
 		return shawarma
 	}
 
-	summarize() {
+	summarize(): RecipeCard {
+		return {
+			id: this.id,
+			name: this.name,
+			img: this.img,
+			price: "",
+			rating: this.rating,
+		}
+	}
+
+	static fromID(id: string): Recipe {
+		return shawarma
 	}
 }
 
@@ -81,7 +92,7 @@ export interface RecipeCard {
 	name: string,
 	img: string,
 	price: string,
-	etc: string | undefined,
+	etc?: string,
 	rating: number,
 }
 

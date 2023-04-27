@@ -12,7 +12,7 @@ const homepage = StyleSheet.create({
 	body: {
 		flex: 10,
 		backgroundColor: THEME.base,
-		...dbgBorders()
+		// ...dbgBorders()
 	},
 	fab: {
 		justifyContent: "center",
